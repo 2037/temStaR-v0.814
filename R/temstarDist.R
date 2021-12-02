@@ -15,7 +15,7 @@ cleanupCdf <- function( cdfret, argout ){
   return( c )
 }
 
-pdf_FFT <- function(arg, param, chf, h = 2^-10,N = 2^17){
+pdf_FFT <- function(arg, param, chf, h = 2^-10,N = 2^12){
   s <- 1/(h*N)
   t1 <- 1:N
   t2 <- 2*pi*(t1 - 1 - N/2)*s
@@ -34,7 +34,7 @@ pdf_FFT <- function(arg, param, chf, h = 2^-10,N = 2^17){
   return( f )
 }
 
-pdf_FFT2 <- function(argx, param, chf, dz = 2^-7, N = 2^17){
+pdf_FFT2 <- function(argx, param, chf, dz = 2^-7, N = 2^12){
   h  <-  1/(dz*N)
   return( pdf_FFT(argx, param, chf, h, N ) )
   # z-grid for CF phi(z)
@@ -55,7 +55,7 @@ pdf_FFT2 <- function(argx, param, chf, dz = 2^-7, N = 2^17){
 
 }
 
-cdf_FFT_GilPelaez <- function( arg, param, chf, dz = 2^-12, m = 2^17){
+cdf_FFT_GilPelaez <- function( arg, param, chf, dz = 2^-8, m = 2^12){
 
   # z-grid for CF phi(z)
   k = (0:(m-1))
@@ -95,7 +95,7 @@ cleanupCdf <- function( cdfret, argout ){
   return( c )
 }
 
-invcdf_FFT_GilPelaez <- function(u, param, chf, maxmin, du, dz = 2^-12, m = 2^17){
+invcdf_FFT_GilPelaez <- function(u, param, chf, maxmin, du, dz = 2^-8, m = 2^12){
   arg <- seq(from = maxmin[1], to = maxmin[2], by = du)
   c <- cdf_FFT_GilPelaez( arg, param, chf, dz, m )
   cc <- cleanupCdf(c, arg)
